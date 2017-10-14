@@ -1,7 +1,12 @@
-
 import urllib.request
 
 from bs4 import BeautifulSoup
+
+year=input('Введите интересующий год (не ранее 2000):')
+month=input('Введите месяц в числовом эквиваленте:')
+year1=str(year)
+month1=str(month)
+address=("https://www.kinopoisk.ru/premiere/ru/%s/month/%s/" % (year1,month1))
 
 def get_html(url):
     response = urllib.request.urlopen(url)
@@ -17,12 +22,13 @@ def extraction(html):
         filmoteka.append(film.a.text)
         
     
-    
     for i in filmoteka:
         print(i)
  
 def main():
-    extraction(get_html('https://www.kinopoisk.ru/premiere/ru/2015/'))
+    
+    extraction(get_html(address))
+
 
 if __name__ == '__main__':
     main()
